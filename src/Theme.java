@@ -1,4 +1,4 @@
-package jeu_questions_reponses;
+package jeu_questions_reponses.src;
 
 import java.util.ArrayList;
 import java.util.List;

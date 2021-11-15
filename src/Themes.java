@@ -1,4 +1,4 @@
-package jeu_questions_reponses;
+package jeu_questions_reponses.src;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +84,7 @@ public class Themes {
 		return themes_selectionnes;
 	}
 	
-	public String toString() {
+	public String affich_themes_indicateurs() {
 		String a_retourner="";
 		
 		for(int i = 0; i < themes.size(); i++) {
