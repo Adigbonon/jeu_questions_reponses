@@ -1,9 +1,12 @@
 package jeu_questions_reponses.src.jeu_questions_reponses;
-import jeu_questions_reponses.Themes;
 
-import java.lang.Exception;
+
+import java.util.Collections;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
+
 
 public class Phase1 implements Phase{
     Joueurs selectionJoueurs;
@@ -23,16 +26,44 @@ public class Phase1 implements Phase{
     }
 
     @Override
-    public void deroulePhase(int i) throws java.lang.Exception{
+    public void deroulePhase() throws java.lang.Exception{
+        Scanner sc = new Scanner(System.in);
         Themes themeChoisi = new Themes();
-        themeChoisi.select_1_theme();
-        //Questions serieQuestions("facile");
+        themeChoisi.themes_au_choix(10);
+        themeChoisi.affich_themes_indicateurs();
+        Theme themeEnCours = themeChoisi.select_1_theme();
 
         ArrayList<Joueur> participants = selectionJoueurs.activeJoueurs();
+        System.out.println(selectJoueurs().getJoueur());
+
         for (int indexJoueur= 0; indexJoueur<= participants.size(); indexJoueur++ ) {
-            //Réponse question
-            //if(bonne réponse)
             participants.get(indexJoueur);
+            Questions listeQuestionsAPoser = themeEnCours.getListQuestions();
+            Question questionAPoser = listeQuestionsAPoser.selectionQuestion("facile");
+            questionAPoser.affichQuestion(listeQuestionsAPoser,questionAPoser.getNumero());
+            String entree = sc.nextLine();
+
+            if(entree.equals(questionAPoser.getReponse())){
+                participants.get(indexJoueur).refreshScoreJoueur(2);
+                System.out.println("Bonne réponse !");
+            } else {
+                System.out.println("Mauvaise réponse");
+            }
         }
+
+        //Comparaison des scores
+        List<Integer> listeScore = new ArrayList<>();
+        for (int index=0; index<= participants.size(); index++)
+            listeScore.add(participants.get(index).getScore());
+
+        int min = Collections.min(listeScore);
+
+        for(int indexJoueur=0; indexJoueur<= participants.size(); indexJoueur++){
+            if(min == participants.get(indexJoueur).getScore())
+                System.out.println("Le joueur " + listeScore.get(indexJoueur) + "est éliminé.");
+                participants.get(listeScore.get(indexJoueur)).changeStatus("éliminé");
+        }
+
+
     }
 }

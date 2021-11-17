@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Joueur{
         //Attributs
         private int numeroJoueur = 90;
-        private int score =0;
+        private int score;
         private static String name;
         private String status;
 
@@ -13,6 +13,7 @@ public class Joueur{
         public Joueur(){
                 this.status= "en attente";
                 this.numeroJoueur+=10;
+                this.score =0;
         }
 
         //Méthodes
@@ -36,5 +37,12 @@ public class Joueur{
 
         public String getJoueur(){
                 return("Name : "+ name + " - Score : " + score + " - Numéro du joueur : "+ numeroJoueur  + " - Statut : " + status);
+        }
+
+        public int getScore(){
+                return this.score;
+        }
+        public String getStatus(){
+                return this.status;
         }
 }

@@ -1,4 +1,4 @@
-package jeu_questions_reponses;
+package jeu_questions_reponses.src.jeu_questions_reponses;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -44,5 +44,9 @@ public class Theme {
 	
 	public void setQuestions(Questions liste){
 		this.liste_questions = liste;
+	}
+
+	public Questions getListQuestions(){
+		return this.liste_questions;
 	}
 }

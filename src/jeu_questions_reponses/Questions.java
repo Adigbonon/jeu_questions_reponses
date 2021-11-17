@@ -1,4 +1,4 @@
-package jeu_questions_reponses;
+package jeu_questions_reponses.src.jeu_questions_reponses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class Questions {
 		liste_questions.remove(rang-1);
 	}
 	
-	public Question selectionQuestion() {
+	public Question selectionQuestion(String niveau) {
 		Question question_a_afficher = liste.get(0);	// todo : modifier la ligne
 		// methode round robin
 		

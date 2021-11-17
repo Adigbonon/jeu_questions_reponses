@@ -1,4 +1,4 @@
-package jeu_questions_reponses;
+package jeu_questions_reponses.src.jeu_questions_reponses;
 
 public class QCM {
 	

@@ -1,4 +1,4 @@
-package jeu_questions_reponses;
+package jeu_questions_reponses.src.jeu_questions_reponses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,5 +104,12 @@ public class Question {
 		
 		return question_a_retourner;
 	}
-	
+
+	public int getNumero(){
+		return this.numero;
+	}
+
+	public String getReponse(){
+		return this.reponses.get(0);
+	}
 }

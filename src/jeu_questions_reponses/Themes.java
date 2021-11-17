@@ -1,4 +1,4 @@
-package jeu_questions_reponses;
+package jeu_questions_reponses.src.jeu_questions_reponses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -335,14 +335,14 @@ public class Themes {
 		themes.add(theme11);
 	}
 	
-	public Theme select_1_theme(Themes themes_liste) {
+	public Theme select_1_theme() {
 		Theme theme_selectionne;
 
 		boolean theme_deja_selectionne = false;
 		do {
 			Random rand = new Random(); //chiffre random
 			
-			theme_selectionne =  themes.get(rand.nextInt(themes_liste.themes.size()));
+			theme_selectionne =  themes.get(rand.nextInt(themes.size()));
 			
 			if(theme_selectionne.getIndicateur() == 0) {
 				theme_selectionne.setIndicateur(1);
@@ -354,21 +354,31 @@ public class Themes {
 	}
 	
 	
-	public List <Theme> select_5_themes(Themes themes_liste) {
+	public List <Theme> select_6_themes() {
 		List <Theme> themes_selectionnes = new ArrayList<>();
 		
-		for(int i = 0; i < 5; i++) {
-			themes_selectionnes.add(select_1_theme(themes_liste));
+		for(int i = 0; i < 6; i++) {
+			themes_selectionnes.add(select_1_theme());
 		}
 		
 		return themes_selectionnes;
 	}
+
+	public List <Theme> select_3_themes() {
+		List <Theme> themes_selectionnes = new ArrayList<>();
+
+		for(int i = 0; i < 3; i++) {
+			themes_selectionnes.add(select_1_theme());
+		}
+
+		return themes_selectionnes;
+	}
 	
-	public void affich_themes_indicateurs(Themes themes_liste) {
+	public void affich_themes_indicateurs() {
 		String a_retourner="";
 		
-		for(int i = 0; i < themes_liste.themes.size(); i++) {
-			Theme a_afficher = themes_liste.themes.get(i);
+		for(int i = 0; i < themes.size(); i++) {
+			Theme a_afficher =themes.get(i);
 			String tmp = a_retourner;
 			a_retourner = "\n" + tmp +  "Thème " + (i+1) + " : " +  a_afficher.getDesignation() + " : " + a_afficher.getIndicateur();
 		}
@@ -376,5 +386,11 @@ public class Themes {
 		System.out.println(a_retourner);
 	}
 	
-	
+	public void themes_au_choix(int nombremaximal){
+		Random rnd = new Random();
+		List <Theme> themesAuChoix = new ArrayList<>();
+		for(int index =0;index<nombremaximal;index++)
+			themesAuChoix.add(themes.get(rnd.nextInt(nombremaximal)));
+		themes = themesAuChoix;
+	}
 }

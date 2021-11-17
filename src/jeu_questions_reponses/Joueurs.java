@@ -40,7 +40,7 @@ public class Joueurs {
             } while (Joueur1==Joueur2 || Joueur1== Joueur3 ||
                     Joueur1== Joueur4 || Joueur2== Joueur3 ||
                     Joueur2 == Joueur4 || Joueur3==Joueur4 ||
-                    ArrayJoueurs.get(Joueur1) == null ||
+                    ArrayJoueurs.get(Joueur1) == null  ||
                     ArrayJoueurs.get(Joueur2) == null ||
                     ArrayJoueurs.get(Joueur3) == null ||
                     ArrayJoueurs.get(Joueur4) == null
@@ -65,7 +65,7 @@ public class Joueurs {
 
     public String getJoueurs() {
         infos+= "Joueurs actifs : ";
-        for (int i=0; i<= 4;i++)
+        for (int i=0; i< 4;i++)
             infos += activeJoueurs.get(i).getJoueur();
         return(infos);
     }
