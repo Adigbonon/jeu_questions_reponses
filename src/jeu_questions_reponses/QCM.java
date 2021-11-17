@@ -7,6 +7,7 @@ public class QCM {
 	private String reponse1;
 	private String reponse2;
 	private String bonne_reponse;
+	private int nb_reponses = 3;
 
 	public String get_texte() {
 		return this.texte;
