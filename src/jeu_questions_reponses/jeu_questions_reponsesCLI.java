@@ -2,37 +2,36 @@ package jeu_questions_reponses.src.jeu_questions_reponses;
 
 import java.io.IOException;
 import java.lang.Exception;
+import java.util.Scanner;
 
-public class jeu_questions_reponsesCLI implements Phase {
-    public static void main(String[] args) throws IOException {
-        //Phase 1
-        //deroulePhase(1);
-        //Phase 2
+public class jeu_questions_reponsesCLI {
+    public static void main(String[] args) throws IOException, java.lang.Exception {
+        Scanner sc = new Scanner(System.in);
 
-        //Phase 3
+        //Création des joueurs
+        System.out.println("Combien de joueurs êtes-vous ? (max 20)");
+        String answer = sc.nextLine();
+        int nbJoueurs = Integer.parseInt(answer);
+        if (nbJoueurs > 20)
+            throw new Exception("Trop de joueurs.");
+        Joueurs selectJoueurs = new Joueurs();
 
-    }
-
-    @Override
-    public void selectJoueur(int i) {
-
-    }
-
-    @Override
-    public void deroulePhase(int num) throws java.lang.Exception {
-    switch (num){
-        default:
-            System.out.println("Echec du déroulement de la phase");
-        case 1:
-            Joueurs selectionJoueurs = new Joueurs();
-            selectionJoueurs.activeJoueurs();
-            //Themes selectionTheme = new Themes();
-            //Niveau Question
-            //Joueurs répondent à leurs questions
-            //Joueurs score --> +2 si c'est bon
-            //Suppression du 4ème joueurs
-        case 2:
-            //selectionJoueurs.selectJoueur();
+        for(int i=0; i<=nbJoueurs -1;i++)
+        {
+            Joueur j = new Joueur();
+            j.Saisie(); //Nom du joueur
+            selectJoueurs.addToJoueurs(j);
+            i++;
         }
+        System.out.println("Nous pouvons commencer la partie ! Voici les joueurs participants : ");
+        selectJoueurs.getJoueurs();
+
+        //Phases de jeu
+        Phase1 phase1 = new Phase1(selectJoueurs);
+
+        Phase2 phase2 = new Phase2(selectJoueurs);
+
+        Phase3 phase3 = new Phase3(selectJoueurs);
+
     }
 }
