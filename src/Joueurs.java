@@ -5,31 +5,31 @@ import java.util.Random;
 
 public class Joueurs {
     //Attributs
-    private int Joueur1, Joueur2, Joueur3, Joueur4,JoueurSelectionne;
+    private int Joueur1, Joueur2, Joueur3, Joueur4;
+    private static int JoueurSelectionne;
     private ArrayList<Joueur> ArrayJoueurs = new ArrayList<Joueur>(20);
     private ArrayList<Joueur> activeJoueurs = new ArrayList<Joueur>(4);
     private String infos="";
 
     //Constructeur
-    public Joueurs(){
-    }
+    public Joueurs(){ }
 
     //Méthodes
     public void addToJoueurs(Joueur joueur){
         ArrayJoueurs.add(joueur);
     }
 
-    public void selectJoueur(){
+    public static Joueur selectJoueur(ArrayList<Joueur> listeAParcourir){
         Random rnd = new Random();
-        try
-        {
+        try {
             do {
-                this.JoueurSelectionne = rnd.nextInt(20);
-            } while(ArrayJoueurs.get(JoueurSelectionne) != null);
+                JoueurSelectionne = rnd.nextInt(listeAParcourir.size());
+            } while(listeAParcourir.get(JoueurSelectionne) != null);
         } catch(Exception e){}
+        return listeAParcourir.get(JoueurSelectionne);
     }
 
-    public void activeJoueurs() throws java.lang.Exception{
+    public ArrayList activeJoueurs() throws java.lang.Exception{
         Random rnd = new Random();
         try {
             do {
@@ -60,6 +60,7 @@ public class Joueurs {
             activeJoueurs.add(ArrayJoueurs.get(Joueur3));
             activeJoueurs.add(ArrayJoueurs.get(Joueur4));
         }
+        return activeJoueurs;
     }
 
     public String getJoueurs() {
@@ -67,5 +68,6 @@ public class Joueurs {
         for (int i=0; i<= 4;i++)
             infos += activeJoueurs.get(i).getJoueur();
         return(infos);
-    }}
+    }
+}
 

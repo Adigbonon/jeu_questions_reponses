@@ -17,7 +17,7 @@ public class jeu_questions_reponsesCLI {
         for(int i=0; i<=nbJoueurs -1;i++)
         {
             Joueur j = new Joueur();
-            j.Saisie();
+            j.Saisie(); //Nom du joueur
             selectJoueurs.addToJoueurs(j);
             i++;
         }
@@ -27,8 +27,8 @@ public class jeu_questions_reponsesCLI {
         //Phases de jeu
         Phase1 phase1 = new Phase1(selectJoueurs);
 
-        Phase2 phase2 = new Phase2();
+        Phase2 phase2 = new Phase2(selectJoueurs);
 
-        Phase3 phase3 = new Phase3();
+        Phase3 phase3 = new Phase3(selectJoueurs);
     }
 }
