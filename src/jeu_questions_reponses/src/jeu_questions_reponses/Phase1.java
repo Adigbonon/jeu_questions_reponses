@@ -21,46 +21,36 @@ public class Phase1 implements Phase{
     }
 
     @Override
-    public void deroulePhase(int nbJoueurs) throws java.lang.Exception{
+    public ArrayList<Joueur> deroulePhase(int nbJoueurs) throws java.lang.Exception{
+        System.out.println("Phase 1");
         Scanner sc = new Scanner(System.in);
         Themes themeChoisi = new Themes();
         themeChoisi.themes_au_choix(10);
+        System.out.println("Liste des th√®mes :");
         themeChoisi.affich_themes_indicateurs();
-        Theme themeEnCours = themeChoisi.select_1_theme();
 
         for (int indexJoueur= 0; indexJoueur< participants.size(); indexJoueur++ ) {
-            participants.get(indexJoueur);
+            System.out.println("\n\n");
+            System.out.println("Joueur " + (indexJoueur+1));
+            Theme themeEnCours = themeChoisi.select_1_theme();
+            Joueur joueur_choisi = participants.get(indexJoueur);
+            joueur_choisi.getJoueur();
             Questions listeQuestionsAPoser = themeEnCours.getListQuestions();
-            Question questionAPoser = listeQuestionsAPoser.selectionQuestion("facile");
+            Question questionAPoser = Questions.selectionQuestion("Facile", listeQuestionsAPoser.getListe());
             questionAPoser.affichQuestion(listeQuestionsAPoser,questionAPoser.getNumero());
             String entree = sc.nextLine();
 
             if(entree.equals(questionAPoser.getReponse())){
                 participants.get(indexJoueur).refreshScoreJoueur(2);
-                System.out.println("Bonne rÈponse !");
-                System.out.println(" Score : "+participants.get(indexJoueur).getScore());
+                System.out.println("Bonne r√©ponse !");
+                System.out.println("Score : "+participants.get(indexJoueur).getScore());
             } else {
-                System.out.println("Mauvaise rÈponse");
-                System.out.println(" Score : "+participants.get(indexJoueur).getScore());
+                System.out.println("Mauvaise r√©ponse");
+                System.out.println("Score : "+participants.get(indexJoueur).getScore());
             }
         }
 
         //Comparaison des scores
-        compareScore();
-    }
-
-    @Override
-    public void compareScore(){
-        List<Integer> listeScore = new ArrayList<>();
-        for (int index=0; index<= participants.size(); index++)
-            listeScore.add(participants.get(index).getScore());
-
-        int min = Collections.min(listeScore);
-
-        for(int indexJoueur=0; indexJoueur<= participants.size(); indexJoueur++){
-            if(min == participants.get(indexJoueur).getScore())
-                System.out.println("Le joueur " + listeScore.get(indexJoueur) + "est ÈliminÈ.");
-            participants.get(listeScore.get(indexJoueur)).changeStatus("ÈliminÈ");
-        }
+        return Joueurs.compareScore(participants);
     }
 }

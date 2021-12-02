@@ -1,6 +1,7 @@
 package jeu_questions_reponses.src.jeu_questions_reponses;
 
 import java.lang.Exception;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class jeu_questions_reponsesCLI {
@@ -27,14 +28,14 @@ public class jeu_questions_reponsesCLI {
         //Phases de jeu
         Phase1 phase1 = new Phase1(selectJoueurs);
         phase1.selectJoueurs(4);
-        phase1.deroulePhase(nbJoueurs);
+        ArrayList<Joueur> gagnants_phase1 = phase1.deroulePhase(nbJoueurs);
 
         Phase2 phase2 = new Phase2(selectJoueurs);
         phase2.selectJoueurs(3);
-        phase2.deroulePhase(nbJoueurs);
+        ArrayList<Joueur> gagnants_phase2 = phase2.deroulePhase(nbJoueurs);
 
         Phase3 phase3 = new Phase3(selectJoueurs);
         phase3.selectJoueurs(2);
-        phase3.deroulePhase(nbJoueurs);
+        ArrayList<Joueur> gagnants_phase3 = phase3.deroulePhase(nbJoueurs);
     }
 }

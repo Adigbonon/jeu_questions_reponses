@@ -43,6 +43,10 @@ public class Joueur{
                 return this.score;
         }
 
+        public String getName(){
+                return this.name;
+        }
+
         public String getStatus(){
                 return this.status;
         }

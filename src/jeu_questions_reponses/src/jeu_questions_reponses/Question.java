@@ -11,7 +11,7 @@ public class Question {
 	private String theme;
 	private String niveau;
 	private String enonce;
-	private List <String> reponses = new ArrayList<>();
+	private static List <String> reponses = new ArrayList<>();
 	
 	public static String table_difficultes[] = {"Facile", "Moyen", "Difficile"};
 
@@ -21,7 +21,7 @@ public class Question {
 		
 	}
 	
-	public Question(int numero, String type, String theme, String niveau, String enonce, List <String> reponses) {
+	public Question(int numero, String type, String niveau, String theme, String enonce, List <String> reponses) {
 		this.numero = numero;
 		this.type = type;
 		this.theme = theme;
@@ -31,13 +31,16 @@ public class Question {
 	}
 	
 	public void affichQuestion(Questions questions, int numero) {
-		Question question_a_afficher = questions.getListe().get(numero - 1);		
+		Question question_a_afficher = questions.getListe().get(numero - 1);
 		
-		System.out.println("Thème : " + question_a_afficher.theme + "\nNiveau : " +  
-						   question_a_afficher.niveau + "\nQuestion " + (numero - 1) + " : "
-						   + question_a_afficher.enonce);
-		for(int i = 0;  i < question_a_afficher.reponses.size(); i++) {
+		System.out.println("ThÃ¨me : " + question_a_afficher.theme + "\nNiveau : " +
+						   question_a_afficher.niveau + "\nType de question : " + question_a_afficher.type +
+				"\nQuestion : " + question_a_afficher.enonce);
+
+		if(question_a_afficher.type.equals("QCM")){
+			for(int i = 0;  i < question_a_afficher.reponses.size(); i++) {
 				System.out.println((i+1) + " - " + question_a_afficher.reponses.get(i));
+			}
 		}
 	}
 	
@@ -54,10 +57,10 @@ public class Question {
 		numero_type = entree.nextInt();
 		
 		if(numero_type == 1 || numero_type == 2 || numero_type == 3) { 
-			System.out.println("Entrez l'énoncé de la question : ");
+			System.out.println("Entrez l'Ã©noncÃ© de la question : ");
 			question_a_retourner.enonce = entree.nextLine();
 			
-			System.out.println("Quel est le niveau de la difficulté?");
+			System.out.println("Quel est le niveau de la difficultÃ©?");
 			for(int i = 0; i < table_difficultes.length; i++) {
 				System.out.println((i+1) + " - " + table_difficultes[i]);
 			}
@@ -68,10 +71,10 @@ public class Question {
 			} else {
 				question_a_retourner.niveau = table_difficultes[numero_niveau + 1];
 				
-				System.out.println("Entrez l'énoncé de la question :");
+				System.out.println("Entrez l'Ã©noncÃ© de la question :");
 				question_a_retourner.enonce = entree.nextLine();
 				
-				System.out.println("Entrez la bonne réponse :");
+				System.out.println("Entrez la bonne rÃ©ponse :");
 				bonne_reponse = entree.nextLine();
 				
 				question_a_retourner.reponses.add(bonne_reponse);
@@ -85,15 +88,15 @@ public class Question {
 				}
 				
 				if(numero_type == 1) {					
-					System.out.println("Entrez la mauvaise réponse :");
+					System.out.println("Entrez la mauvaise rÃ©ponse :");
 					autre_reponse = entree.nextLine();
 					question_a_retourner.reponses.add(autre_reponse);
 				} else if(numero_type == 3) {					
-					System.out.println("Entrez une mauvaise réponse :");
+					System.out.println("Entrez une mauvaise rÃ©ponse :");
 					autre_reponse = entree.nextLine();
 					question_a_retourner.reponses.add(autre_reponse);
 					
-					System.out.println("Entrez une autre mauvaise réponse :");
+					System.out.println("Entrez une autre mauvaise rÃ©ponse :");
 					autre_reponse = entree.nextLine();
 					question_a_retourner.reponses.add(autre_reponse);
 				}		
@@ -107,6 +110,10 @@ public class Question {
 
 	public int getNumero(){
 		return this.numero;
+	}
+
+	public String getNiveau(){
+		return this.niveau;
 	}
 
 	public String getReponse(){

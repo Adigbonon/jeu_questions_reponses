@@ -1,7 +1,6 @@
 package jeu_questions_reponses.src.jeu_questions_reponses;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Joueurs {
 
@@ -47,7 +46,7 @@ public class Joueurs {
                 }
             }
         } catch(Exception e) {
-            throw new Exception("Il y a un probleme dans le choix des joueurs actifs pour le round.");
+            throw new Exception("Il y a un problème dans le choix des joueurs actifs pour le round.");
         }
         activeJoueurs.remove(bidon);
         return activeJoueurs;
@@ -58,6 +57,28 @@ public class Joueurs {
         for (int i=0; i< 4;i++)
             infos += activeJoueurs.get(i).getJoueur();
         return(infos);
+    }
+
+    public static ArrayList<Joueur> compareScore(ArrayList<Joueur> participants){
+        System.out.println("joueur size " + participants.size());
+        List<Integer> listeScore = new ArrayList<>();
+
+        for (int index=0; index<= participants.size()-1; index++){
+            // System.out.println("joueur " + index + " " + participants.get(index).getName());
+            listeScore.add(participants.get(index).getScore());
+        }
+
+        int min = Collections.min(listeScore);
+
+        for(int indexJoueur=0; indexJoueur<= participants.size(); indexJoueur++){
+            if(min == participants.get(indexJoueur).getScore()) {
+                System.out.println("\n\nLe joueur " + (listeScore.get(indexJoueur)+1) + " est éliminé.\n");
+                participants.get(listeScore.get(indexJoueur)).changeStatus("éliminé");
+                break;
+            }
+        }
+
+        return participants;
     }
 }
 

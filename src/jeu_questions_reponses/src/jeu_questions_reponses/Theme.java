@@ -6,10 +6,10 @@ import java.util.List;
 
 public class Theme {
 	
-	private static String designation;
-	private static int nb_questions;
-	private static int indicateur;
-	private static Questions liste_questions = new Questions();	
+	private String designation;
+	private int nb_questions;
+	private int indicateur;
+	private Questions liste_questions = new Questions();
 
 	public Theme() {
 		Random r = new Random();
