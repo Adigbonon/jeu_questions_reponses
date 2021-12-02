@@ -3,11 +3,18 @@ package jeu_questions_reponses.src.jeu_questions_reponses;
 public class QCM {
 	
 	private String texte;
-	
 	private String reponse1;
 	private String reponse2;
 	private String bonne_reponse;
-	private int nb_reponses = 3;
+	private int nb_reponses;
+
+	public QCM(){
+		this.texte="";
+		this.bonne_reponse="";
+		this.reponse1="";
+		this.reponse2="";
+		this.nb_reponses=3;
+	}
 
 	public String get_texte() {
 		return this.texte;
@@ -18,7 +25,7 @@ public class QCM {
 	}
 	
 	public String get_reponse2() {
-		return this.reponse1;
+		return this.reponse2;
 	}
 	
 	public String get_bonne_reponse() {

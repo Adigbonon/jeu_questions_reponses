@@ -2,9 +2,14 @@ package jeu_questions_reponses.src.jeu_questions_reponses;
 
 public class VF {
 	private String texte;
-
 	private boolean bonne_reponse;
-	private int nb_reponses = 2;
+	private int nb_reponses;
+
+	public VF(){
+		this.texte="";
+		bonne_reponse=false;
+		nb_reponses=2;
+	}
 
 	public String get_texte() {
 		return this.texte;
