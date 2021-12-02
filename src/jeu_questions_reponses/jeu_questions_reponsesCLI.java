@@ -8,32 +8,33 @@ public class jeu_questions_reponsesCLI {
         Scanner sc = new Scanner(System.in);
 
         //Création des joueurs
-        System.out.println("Combien de joueurs êtes-vous ? (min 4 | max 20)");
+        System.out.println("Combien de joueurs etes-vous ? (min 4 | max 20)");
         String answer = sc.nextLine();
         int nbJoueurs = Integer.parseInt(answer);
-        if (nbJoueurs > 20|| nbJoueurs<4)
-            throw new Exception("Trop de joueurs.");
+        if (nbJoueurs > 20 || nbJoueurs<4)
+            throw new Exception("Nombre de joueurs incorrect.");
         Joueurs selectJoueurs = new Joueurs();
 
         for(int i=0; i<nbJoueurs;i++)
         {
             Joueur j = new Joueur();
+            j.incrementNumero(i);
             j.Saisie(); //Nom du joueur
             selectJoueurs.addToJoueurs(j);
         }
-        System.out.println("Nous pouvons commencer la partie ! Voici les joueurs participants : ");
+        System.out.println("Nous pouvons commencer la partie !");
 
         //Phases de jeu
         Phase1 phase1 = new Phase1(selectJoueurs);
-        phase1.selectJoueurs();
-        phase1.deroulePhase();
+        phase1.selectJoueurs(4);
+        phase1.deroulePhase(nbJoueurs);
 
         Phase2 phase2 = new Phase2(selectJoueurs);
-        phase2.selectJoueurs();
-        phase2.deroulePhase();
+        phase2.selectJoueurs(3);
+        phase2.deroulePhase(nbJoueurs);
 
         Phase3 phase3 = new Phase3(selectJoueurs);
-        phase3.selectJoueurs();
-        phase3.deroulePhase();
+        phase3.selectJoueurs(2);
+        phase3.deroulePhase(nbJoueurs);
     }
 }

@@ -4,23 +4,24 @@ import java.util.Scanner;
 
 public class Joueur{
         //Attributs
-        private int numeroJoueur = 90;
+        private int numeroJoueur;
         private int score;
-        private static String name;
+        private String name;
         private String status;
 
         //Constructeur
         public Joueur(){
+                this.name = "";
                 this.status= "en attente";
-                this.numeroJoueur+=10;
+                this.numeroJoueur= 100;
                 this.score =0;
         }
 
         //Méthodes
-        public static void Saisie(){
+        public void Saisie(){
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Your name :");
-                name = sc.nextLine();
+                this.name = sc.nextLine();
         }
 
         public void refreshScoreJoueur(int addPoints){
@@ -28,21 +29,26 @@ public class Joueur{
         }
 
         public void changeStatus(String result) {
-                String[] TabStatus = {"sélectionné","gagnant", "super-gagnant", "éliminé", "en attente"};
-                for(int i=0; i<= TabStatus.length; i++){
+                String[] TabStatus = {"selectionne","gagnant", "super-gagnant", "elimine", "en attente"};
+                for(int i=0; i< TabStatus.length; i++){
                         if(result == TabStatus[i])
                                 this.status= result;
                 }
         }
 
         public String getJoueur(){
-                return("Name : "+ name + " - Score : " + score + " - Numéro du joueur : "+ numeroJoueur  + " - Statut : " + status);
+                return("Name : "+ name + " - Score : " + score + " - Numero du joueur : "+ numeroJoueur  + " - Statut : " + status +" \n");
         }
 
         public int getScore(){
                 return this.score;
         }
+
         public String getStatus(){
                 return this.status;
+        }
+
+        public int incrementNumero(int i){
+                return this.numeroJoueur+= i*10;
         }
 }

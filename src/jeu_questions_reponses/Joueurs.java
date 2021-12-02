@@ -19,7 +19,7 @@ public class Joueurs {
         ArrayJoueurs.add(joueur);
     }
 
-    public static Joueur selectJoueur(ArrayList<Joueur> listeAParcourir){
+    public Joueur selectJoueur(ArrayList<Joueur> listeAParcourir){
         Random rnd = new Random();
         try {
             do {
@@ -29,42 +29,56 @@ public class Joueurs {
         return listeAParcourir.get(JoueurSelectionne);
     }
 
-    public ArrayList activeJoueurs() throws java.lang.Exception{
-        Random rnd = new Random();
-        try {
-            do {
-                this.Joueur1 = rnd.nextInt(20);
-                this.Joueur2 = rnd.nextInt(20);
-                this.Joueur3 = rnd.nextInt(20);
-                this.Joueur4 = rnd.nextInt(20);
-            } while (Joueur1==Joueur2 || Joueur1== Joueur3 ||
-                    Joueur1== Joueur4 || Joueur2== Joueur3 ||
-                    Joueur2 == Joueur4 || Joueur3==Joueur4 ||
-                    ArrayJoueurs.get(Joueur1) == null  ||
-                    ArrayJoueurs.get(Joueur2) == null ||
-                    ArrayJoueurs.get(Joueur3) == null ||
-                    ArrayJoueurs.get(Joueur4) == null
-            );
+    public ArrayList activeJoueurs(int nombreJoueurs) throws java.lang.Exception{
+        try
+        {
+            for (int n =0; n<nombreJoueurs;n++) {
+                Joueur joueur =selectJoueur(ArrayJoueurs);
+                joueur.changeStatus("selectionne");
+                activeJoueurs.add(joueur);
+            }
         } catch(Exception e) {
-            throw new Exception("Il y a un problème dans le choix des joueurs actifs pour le round.");
+            throw new Exception("Il y a un probleme dans le choix des joueurs actifs pour le round.");
         }
-        finally {
-            //Changement de statut
-            ArrayJoueurs.get(Joueur1).changeStatus("sélectionné");
-            ArrayJoueurs.get(Joueur2).changeStatus("sélectionné");
-            ArrayJoueurs.get(Joueur3).changeStatus("sélectionné");
-            ArrayJoueurs.get(Joueur4).changeStatus("sélectionné");
 
-            activeJoueurs.add(ArrayJoueurs.get(Joueur1));
-            activeJoueurs.add(ArrayJoueurs.get(Joueur2));
-            activeJoueurs.add(ArrayJoueurs.get(Joueur3));
-            activeJoueurs.add(ArrayJoueurs.get(Joueur4));
+
+        Random rnd = new Random();
+        if(nombreJoueurs == 4)
+        {
+            this.Joueur1 =0;
+            this.Joueur2=1;
+            this.Joueur3=2;
+            this.Joueur4=3;
+        } else {
+            try {
+                do {
+                    this.Joueur1 = rnd.nextInt(nombreJoueurs);
+                    this.Joueur2 = rnd.nextInt(nombreJoueurs);
+                    this.Joueur3 = rnd.nextInt(nombreJoueurs);
+                    this.Joueur4 = rnd.nextInt(nombreJoueurs);
+                } while (Joueur1==Joueur2 || Joueur1== Joueur3 ||
+                        Joueur1== Joueur4 || Joueur2== Joueur3 ||
+                        Joueur2 == Joueur4 || Joueur3==Joueur4
+                );
+            } catch(Exception e) {
+                throw new Exception("Il y a un probleme dans le choix des joueurs actifs pour le round.");
+            }
         }
+        //Changement de statut
+        ArrayJoueurs.get(Joueur1).changeStatus("selectionne");
+        ArrayJoueurs.get(Joueur2).changeStatus("selectionne");
+        ArrayJoueurs.get(Joueur3).changeStatus("selectionne");
+        ArrayJoueurs.get(Joueur4).changeStatus("selectionne");
+
+        activeJoueurs.add(ArrayJoueurs.get(Joueur1));
+        activeJoueurs.add(ArrayJoueurs.get(Joueur2));
+        activeJoueurs.add(ArrayJoueurs.get(Joueur3));
+        activeJoueurs.add(ArrayJoueurs.get(Joueur4));
         return activeJoueurs;
     }
 
     public String getJoueurs() {
-        infos+= "Joueurs actifs : ";
+        infos+= "Joueurs actifs : \n";
         for (int i=0; i< 4;i++)
             infos += activeJoueurs.get(i).getJoueur();
         return(infos);
