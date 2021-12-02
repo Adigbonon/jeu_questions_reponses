@@ -17,7 +17,6 @@ public class Joueur{
                 this.score =0;
         }
 
-        //Méthodes
         public void Saisie(){
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Your name :");
@@ -46,6 +45,10 @@ public class Joueur{
 
         public String getStatus(){
                 return this.status;
+        }
+
+        public void setName(String Name){
+                this.name= Name;
         }
 
         public int incrementNumero(int i){
